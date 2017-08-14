@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="seewodubbotest1.0:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="seewo-dubbo-test.war">
+      <element id="artifact" artifact-name="seewodubbotest1.0:war exploded" />
+    </root>
+  </artifact>
+</component>
