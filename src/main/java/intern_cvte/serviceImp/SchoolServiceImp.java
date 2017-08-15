@@ -5,6 +5,7 @@ import intern_cvte.pojo.School;
 import intern_cvte.service.Action;
 import intern_cvte.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 /**
  * Created by zxy on 2017/8/14.
  */
+@Service
 public class SchoolServiceImp implements SchoolService {
     @Autowired
     private SchoolDao schoolDao = new SchoolDao();
@@ -19,10 +21,10 @@ public class SchoolServiceImp implements SchoolService {
     public boolean isRegister(String province, String city, String district, String schoolName) {
 
         try {
-            if(schoolDao.isRegisted(province,city,district,schoolName)){
+            if (schoolDao.isRegisted(province, city, district, schoolName)) {
                 return true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
@@ -30,31 +32,31 @@ public class SchoolServiceImp implements SchoolService {
 
     public boolean isApplied(String province, String city, String district, String schoolName) {
         try {
-            if(schoolDao.queryCodeByName(province,city,district,schoolName) != null){
+            if (schoolDao.queryCodeByName(province, city, district, schoolName) != null) {
                 return true;
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
     }
 
     public boolean register(String province, String city, String district, String schoolName) {
-        if (isRegister(province,city,district,schoolName))
+        if (isRegister(province, city, district, schoolName))
             return false;
-        School school = new School(province,city,district,schoolName,null);
+        School school = new School(province, city, district, schoolName, null);
         try {
             schoolDao.addSchool(school);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return true;
     }
 
     public String applyCode(String province, String city, String district, String schoolName) {
-        if (isApplied(province,city,district,schoolName)){
+        if (isApplied(province, city, district, schoolName)) {
             try {
-                return "您已经申请过了邀请码："+schoolDao.queryCodeByName(province,city,district,schoolName);
+                return "您已经申请过了邀请码：" + schoolDao.queryCodeByName(province, city, district, schoolName);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -71,11 +73,11 @@ public class SchoolServiceImp implements SchoolService {
             e.printStackTrace();
         }
 
-        School school = new School(province,city,district,schoolName,code);
+        School school = new School(province, city, district, schoolName, code);
         try {
             //更新school数据库的值
             schoolDao.updateSchoolCode(school);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return code;
@@ -101,7 +103,7 @@ public class SchoolServiceImp implements SchoolService {
 
     public ArrayList<String> getDistrict(String province, String city) {
         try {
-            return schoolDao.getDistrict(province,city);
+            return schoolDao.getDistrict(province, city);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -110,7 +112,7 @@ public class SchoolServiceImp implements SchoolService {
 
     public ArrayList<String> getSchool(String province, String city, String district) {
         try {
-            return schoolDao.getSchool(province,city,district);
+            return schoolDao.getSchool(province, city, district);
         } catch (SQLException e) {
             e.printStackTrace();
         }

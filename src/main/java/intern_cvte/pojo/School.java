@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by zxy on 2017/8/11.
  */
-public class School implements Serializable{
+public class School implements Serializable {
 
     //学校所属省份
     private String province;
@@ -23,15 +23,17 @@ public class School implements Serializable{
     //四位邀请码
     private String code;
 
-    public School(){}
+    public School() {
+    }
 
-    public School(String province, String city, String district, String schoolName, String code){
+    public School(String province, String city, String district, String schoolName, String code) {
         this.province = province;
         this.city = city;
         this.district = district;
         this.schoolName = schoolName;
         this.code = code;
     }
+
     public String getProvince() {
         return province;
     }
@@ -56,21 +58,19 @@ public class School implements Serializable{
         this.district = district;
     }
 
-    public String getCode()
-    {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(String code){
+    public void setCode(String code) {
         this.code = code;
     }
 
-    public String getSchoolName()
-    {
+    public String getSchoolName() {
         return schoolName;
     }
 
-    public void setSchoolName(String schoolName){
+    public void setSchoolName(String schoolName) {
         this.schoolName = schoolName;
     }
 

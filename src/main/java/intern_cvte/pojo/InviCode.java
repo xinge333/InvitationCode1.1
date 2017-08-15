@@ -20,50 +20,48 @@ public class InviCode implements Serializable {
     //拥有此邀请码的学校
     private String schoolName;
 
-    public InviCode(){
+    public InviCode() {
 
-    };
+    }
 
-    public InviCode(int id, String code, boolean isUsed, String schoolName){
+    ;
+
+    public InviCode(int id, String code, boolean isUsed, String schoolName) {
         this.id = id;
         this.code = code;
         this.isUsed = isUsed;
         this.schoolName = schoolName;
     }
 
-    public Integer getId()
-    {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id)
-    {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getCode()
-    {
+    public String getCode() {
         return code;
     }
 
-    public void setCode(String code){
+    public void setCode(String code) {
         this.code = code;
     }
 
-    public boolean getIsUsed(){
+    public boolean getIsUsed() {
         return isUsed;
     }
 
-    public void setUsed(boolean isUsed){
+    public void setUsed(boolean isUsed) {
         this.isUsed = isUsed;
     }
 
-    public String getSchoolName()
-    {
+    public String getSchoolName() {
         return schoolName;
     }
 
-    public void setSchoolName(String schoolName){
+    public void setSchoolName(String schoolName) {
         this.schoolName = schoolName;
     }
 

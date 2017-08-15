@@ -19,16 +19,18 @@ public class UserDao {
     public User queryByName(String schoolName, String userName, String pwd) throws SQLException {
         User user = null;
         Connection conn = DBUser.getConnection();
-        String sql = " select * from User " + " where userName=? AND password=? and shoolName=?";
+        String sql = " select * from User " + " where userName=? AND password=? and schoolName=?";
 
+
+        System.out.print(sql+"------------------"+schoolName);
         PreparedStatement ptmt = conn.prepareStatement(sql);
 
-        ptmt.setString(1,userName);
-        ptmt.setString(2,pwd);
-        ptmt.setString(2,schoolName);
+        ptmt.setString(1, userName);
+        ptmt.setString(2, pwd);
+        ptmt.setString(3, schoolName);
 
         ResultSet rs = ptmt.executeQuery();
-        while (rs.next()){
+        while (rs.next()) {
             user = new User();
             user.setUserName(rs.getString("userName"));
             user.setPwd(rs.getString("password"));
@@ -43,21 +45,21 @@ public class UserDao {
         String sql = " insert into user (userName,password,schoolName) values(?,?,?) ";
 
         PreparedStatement ptmt = conn.prepareStatement(sql);
-        ptmt.setString(1,user.getUserName());
-        ptmt.setString(2,user.getPwd());
-        ptmt.setString(3,user.getSchoolName());
+        ptmt.setString(1, user.getUserName());
+        ptmt.setString(2, user.getPwd());
+        ptmt.setString(3, user.getSchoolName());
 
         ptmt.execute();
     }
 
     //根据用户名和学校删除某个用户
-    public void deleteUser(String userName , String schoolName) throws SQLException {
+    public void deleteUser(String userName, String schoolName) throws SQLException {
         Connection conn = DBUser.getConnection();
         String sql = "delete from User where userName=? and schoolName=?";
         PreparedStatement ptmt = conn.prepareStatement(sql);
 
-        ptmt.setString(1,userName);
-        ptmt.setString(2,schoolName);
+        ptmt.setString(1, userName);
+        ptmt.setString(2, schoolName);
 
         ptmt.execute();
     }
@@ -68,11 +70,11 @@ public class UserDao {
         String sql = "update User set userName=?,password=?,schoolName=? where userName=? and schoolName=?";
         PreparedStatement ptmt = conn.prepareStatement(sql);
 
-        ptmt.setString(1,user.getUserName());
-        ptmt.setString(2,user.getPwd());
-        ptmt.setString(3,user.getSchoolName());
-        ptmt.setString(4,user.getUserName());
-        ptmt.setString(5,user.getSchoolName());
+        ptmt.setString(1, user.getUserName());
+        ptmt.setString(2, user.getPwd());
+        ptmt.setString(3, user.getSchoolName());
+        ptmt.setString(4, user.getUserName());
+        ptmt.setString(5, user.getSchoolName());
 
         ptmt.execute();
 

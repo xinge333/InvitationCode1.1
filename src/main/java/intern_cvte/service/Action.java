@@ -1,7 +1,6 @@
 package intern_cvte.service;
 
 
-
 import intern_cvte.dao.InviCodeDao;
 import intern_cvte.pojo.InviCode;
 
@@ -11,16 +10,17 @@ import java.util.List;
 /**
  * Created by zxy on 2017/8/10.
  */
-public class Action implements Runnable{
+public class Action implements Runnable {
     private volatile static InviCodeDao inviCodeDao = new InviCodeDao();
     private volatile static InviCode inviCode;
+
     /**
      * 新增邀请码
+     *
      * @param inviCode
      * @throws Exception
      */
-    public void add(InviCode inviCode, int id, String code, boolean isUsed, String schoolName) throws Exception
-    {
+    public void add(InviCode inviCode, int id, String code, boolean isUsed, String schoolName) throws Exception {
         InviCodeDao dao = new InviCodeDao();
         inviCode.setId(id);
         inviCode.setCode(code);
@@ -32,8 +32,7 @@ public class Action implements Runnable{
     /**
      * 查询单个邀请码
      */
-    public InviCode get(Integer id) throws SQLException
-    {
+    public InviCode get(Integer id) throws SQLException {
         InviCodeDao dao = new InviCodeDao();
         return dao.queryById(id);
     }
@@ -41,8 +40,7 @@ public class Action implements Runnable{
     /**
      * 修改邀请码
      */
-    public void edit(InviCode inviCode) throws Exception
-    {
+    public void edit(InviCode inviCode) throws Exception {
         InviCodeDao dao = new InviCodeDao();
         dao.updateInviCode(inviCode);
     }
@@ -50,8 +48,7 @@ public class Action implements Runnable{
     /**
      * 删除邀请码
      */
-    public void delete(Integer id) throws SQLException
-    {
+    public void delete(Integer id) throws SQLException {
         InviCodeDao dao = new InviCodeDao();
         dao.deleteInviCode(id);
     }
@@ -59,8 +56,7 @@ public class Action implements Runnable{
     /**
      * 查询全部邀请码
      */
-    public List<InviCode> query() throws Exception
-    {
+    public List<InviCode> query() throws Exception {
         InviCodeDao dao = new InviCodeDao();
         return dao.queryAll();
     }
@@ -77,8 +73,7 @@ public class Action implements Runnable{
     }
 
     //测试
-    public static void main(String[] args) throws SQLException
-    {
+    public static void main(String[] args) throws SQLException {
         InviCodeDao inviCodeDao = new InviCodeDao();
 
         /*List<InviCode> inviCodeList = inviCodeDao.queryAll();
@@ -109,7 +104,7 @@ public class Action implements Runnable{
         inviCodeDao.updateGoddess(inviCode);*/
 
         for (int i = 1; i <= 20; i++) {
-            String schoolName = "学校组织：" + i ;
+            String schoolName = "学校组织：" + i;
             inviCode = inviCodeDao.selectOneFree();
             System.out.println(inviCode.toString());
             inviCode.setUsed(true);

@@ -10,8 +10,10 @@ public interface UserService {
 
     //用户登录
     User log(String schoolName, String userName, String pwd);
+
     //用户注册
     boolean register(String schoolName, String userName, String pwd, String rpwd);
+
     //用户申请邀请码
     String apply(String schoolName);
 

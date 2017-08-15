@@ -23,34 +23,33 @@ public class SchoolDao {
         String sql = " select count(*) number from School " + " where province=? and city=? and district=? and schoolName=? ";
 
         PreparedStatement ptmt = conn.prepareStatement(sql);
-        ptmt.setString(1,province);
-        ptmt.setString(2,city);
-        ptmt.setString(3,district);
-        ptmt.setString(4,schoolName);
+        ptmt.setString(1, province);
+        ptmt.setString(2, city);
+        ptmt.setString(3, district);
+        ptmt.setString(4, schoolName);
 
         ResultSet rs = ptmt.executeQuery();
         int num = rs.getInt("number");
-        if(num > 0){
+        if (num > 0) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
     //添加某个学校
-    public void addSchool(School school)throws SQLException{
+    public void addSchool(School school) throws SQLException {
         Connection conn = DBschool.getConnection();
 
         String sql = "insert into School(province,city,district,schoolName,code) values(?,?,?,?,?)";
 
         PreparedStatement ptmt = conn.prepareStatement(sql);
 
-        ptmt.setString(1,school.getProvince());
-        ptmt.setString(2,school.getCity());
-        ptmt.setString(3,school.getDistrict());
-        ptmt.setString(4,school.getSchoolName());
-        ptmt.setString(5,school.getCode());
+        ptmt.setString(1, school.getProvince());
+        ptmt.setString(2, school.getCity());
+        ptmt.setString(3, school.getDistrict());
+        ptmt.setString(4, school.getSchoolName());
+        ptmt.setString(5, school.getCode());
 
         ptmt.execute();
     }
@@ -63,10 +62,10 @@ public class SchoolDao {
 
         PreparedStatement ptmt = conn.prepareStatement(sql);
 
-        ptmt.setString(1,province);
-        ptmt.setString(2,city);
-        ptmt.setString(3,district);
-        ptmt.setString(4,schoolName);
+        ptmt.setString(1, province);
+        ptmt.setString(2, city);
+        ptmt.setString(3, district);
+        ptmt.setString(4, schoolName);
 
         ptmt.execute();
     }
@@ -79,15 +78,15 @@ public class SchoolDao {
 
         PreparedStatement ptmt = conn.prepareStatement(sql);
 
-        ptmt.setString(1,school.getProvince());
-        ptmt.setString(2,school.getCity());
-        ptmt.setString(3,school.getDistrict());
-        ptmt.setString(4,school.getSchoolName());
-        ptmt.setString(5,school.getCode());
-        ptmt.setString(6,school.getProvince());
-        ptmt.setString(7,school.getCity());
-        ptmt.setString(8,school.getDistrict());
-        ptmt.setString(9,school.getSchoolName());
+        ptmt.setString(1, school.getProvince());
+        ptmt.setString(2, school.getCity());
+        ptmt.setString(3, school.getDistrict());
+        ptmt.setString(4, school.getSchoolName());
+        ptmt.setString(5, school.getCode());
+        ptmt.setString(6, school.getProvince());
+        ptmt.setString(7, school.getCity());
+        ptmt.setString(8, school.getDistrict());
+        ptmt.setString(9, school.getSchoolName());
 
         ptmt.execute();
     }
@@ -102,10 +101,10 @@ public class SchoolDao {
 
         PreparedStatement ptmt = conn.prepareStatement(sql);
 
-        ptmt.setString(1,province);
-        ptmt.setString(2,city);
-        ptmt.setString(3,district);
-        ptmt.setString(4,schoolName);
+        ptmt.setString(1, province);
+        ptmt.setString(2, city);
+        ptmt.setString(3, district);
+        ptmt.setString(4, schoolName);
 
         ResultSet rs = ptmt.executeQuery();
         while (rs.next()) {
@@ -133,7 +132,7 @@ public class SchoolDao {
         Connection conn = DBschool.getConnection();
         String sql = " select distinct city from School " + "where province=?";
         PreparedStatement ptmt = conn.prepareStatement(sql);
-        ptmt.setString(1,province);
+        ptmt.setString(1, province);
         ResultSet rs = ptmt.executeQuery();
         while (rs.next()) {
             arrayList.add(rs.getString("city"));
@@ -147,8 +146,8 @@ public class SchoolDao {
         Connection conn = DBschool.getConnection();
         String sql = " select distinct district from School " + "where province=? and city=?";
         PreparedStatement ptmt = conn.prepareStatement(sql);
-        ptmt.setString(1,province);
-        ptmt.setString(2,city);
+        ptmt.setString(1, province);
+        ptmt.setString(2, city);
         ResultSet rs = ptmt.executeQuery();
         while (rs.next()) {
             arrayList.add(rs.getString("district"));
@@ -160,14 +159,14 @@ public class SchoolDao {
     public ArrayList<String> getSchool(String province, String city, String district) throws SQLException {
         ArrayList<String> arrayList = new ArrayList<String>();
         Connection conn = DBschool.getConnection();
-        String sql = " select distinct shoolName from School " + "where province=? and city=? and district=?";
+        String sql = " select distinct schoolName from School " + "where province=? and city=? and district=?";
         PreparedStatement ptmt = conn.prepareStatement(sql);
-        ptmt.setString(1,province);
-        ptmt.setString(2,city);
-        ptmt.setString(3,district);
+        ptmt.setString(1, province);
+        ptmt.setString(2, city);
+        ptmt.setString(3, district);
         ResultSet rs = ptmt.executeQuery();
         while (rs.next()) {
-            arrayList.add(rs.getString("shoolName"));
+            arrayList.add(rs.getString("schoolName"));
         }
         return arrayList;
     }

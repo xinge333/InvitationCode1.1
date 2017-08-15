@@ -9,19 +9,20 @@ public class User {
     private String pwd;
     private String schoolName;
 
-    public User() {}
+    public User() {
+    }
 
-    public User(String userName, String pwd, String schoolName){
+    public User(String userName, String pwd, String schoolName) {
         this.userName = userName;
         this.pwd = pwd;
         this.schoolName = schoolName;
     }
 
-    public void setUserName(String userName){
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public String getUserName(){
+    public String getUserName() {
         return this.userName;
     }
 
@@ -33,11 +34,11 @@ public class User {
         return schoolName;
     }
 
-    public void setPwd(String pwd){
+    public void setPwd(String pwd) {
         this.pwd = pwd;
     }
 
-    public String getPwd(){
+    public String getPwd() {
         return this.pwd;
     }
 
