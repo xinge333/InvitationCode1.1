@@ -18,7 +18,7 @@ public class SchoolServiceImp implements SchoolService {
     @Autowired
     private SchoolDao schoolDao = new SchoolDao();
 
-    public boolean isRegister(String province, String city, String district, String schoolName) {
+    public synchronized boolean isRegister(String province, String city, String district, String schoolName) {
 
         try {
             if (schoolDao.isRegisted(province, city, district, schoolName)) {
@@ -30,7 +30,7 @@ public class SchoolServiceImp implements SchoolService {
         return false;
     }
 
-    public boolean isApplied(String province, String city, String district, String schoolName) {
+    public synchronized boolean isApplied(String province, String city, String district, String schoolName) {
         try {
             if (schoolDao.queryCodeByName(province, city, district, schoolName) != null) {
                 return true;
@@ -41,7 +41,7 @@ public class SchoolServiceImp implements SchoolService {
         return false;
     }
 
-    public boolean register(String province, String city, String district, String schoolName) {
+    public synchronized boolean register(String province, String city, String district, String schoolName) {
         if (isRegister(province, city, district, schoolName))
             return false;
         School school = new School(province, city, district, schoolName, null);
@@ -53,7 +53,7 @@ public class SchoolServiceImp implements SchoolService {
         return true;
     }
 
-    public String applyCode(String province, String city, String district, String schoolName) {
+    public synchronized String applyCode(String province, String city, String district, String schoolName) {
         if (isApplied(province, city, district, schoolName)) {
             try {
                 return "您已经申请过了邀请码：" + schoolDao.queryCodeByName(province, city, district, schoolName);

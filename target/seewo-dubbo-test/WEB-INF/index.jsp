@@ -46,29 +46,6 @@
                             <div class="error"></div>
                             <div class="form loginBox">
                                 <form id="longinForm" method="post" action="/login" accept-charset="UTF-8">
-                                    <tr>
-                                        <select class="select selectpicker show-tick form-control" id="province"
-                                                name="province" onchange="">
-                                            <option value="">选择省</option>
-                                        </select>
-
-                                        <select class="select selectpicker show-tick form-control" id="city" name="city"
-                                                onchange="">
-                                            <option value="">选择市</option>
-                                        </select>
-
-                                        <select class="select selectpicker show-tick form-control" id="district"
-                                                name="district" onchange="">
-                                            <option value="">选择区</option>
-                                        </select>
-                                        <select class="select selectpicker show-tick form-control" id="sName"
-                                                name="sName">
-                                            <option value="">选择学校</option>
-                                        </select>
-                                        </td>
-                                    </tr>
-                                    <br/>
-                                    <br/>
                                     <input id="userName" class="form-control" type="text" placeholder="UserName"
                                            name="userName">
                                     <input id="password" class="form-control" type="password" placeholder="Password"

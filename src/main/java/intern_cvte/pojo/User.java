@@ -5,6 +5,10 @@ package intern_cvte.pojo;
  * command + n(实现方法)
  */
 public class User {
+
+
+    //唯一主键
+    private Integer id;
     private String userName;
     private String pwd;
     private String schoolName;
@@ -16,6 +20,13 @@ public class User {
         this.userName = userName;
         this.pwd = pwd;
         this.schoolName = schoolName;
+    }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public void setUserName(String userName) {

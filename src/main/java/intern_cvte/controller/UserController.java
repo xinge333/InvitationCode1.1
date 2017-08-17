@@ -6,20 +6,24 @@ import intern_cvte.service.SchoolService;
 import intern_cvte.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sun.tools.java.Environment;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by zxy on 2017/8/13.
  */
 @Controller
 @RequestMapping(produces = "text/html;charset=utf-8")
-public class UserController {
+public class UserController  {
 
     @Autowired
     private UserService userService;
@@ -28,9 +32,8 @@ public class UserController {
     private SchoolService schoolService;
 
     @RequestMapping("/login")
-    public String log(String province, String city, String district, String sName, String userName, String pwd, HttpServletRequest request) {
-        String ssName = province + "," + city + "," + district + "," + sName;
-        User isOK = userService.log(ssName, userName, pwd);
+    public String log(String userName, String pwd, HttpServletRequest request) {
+        User isOK = userService.log(userName, pwd);
         if (isOK != null) {
             request.getSession().setAttribute("user", isOK);
             return "test";
@@ -58,9 +61,9 @@ public class UserController {
 
     @RequestMapping("/apply")
     @ResponseBody
-    public String get(HttpServletRequest request) {
+    public synchronized String get(HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
-        //语法
+        //根据用户名找到所属的学校
         String schoolName = user.getSchoolName();
         String code = userService.apply(schoolName);
 
@@ -101,7 +104,7 @@ public class UserController {
 
     @RequestMapping("/addSchool")
     @ResponseBody
-    public String addSchool(String province, String city, String district, String schoolName) {
+    public synchronized String addSchool(String province, String city, String district, String schoolName) {
         if(province.equals("")||city.equals("")||district.equals("")||schoolName.equals("")){
             return "注册失败,输入不能为空<a href='login'>点击此处返回注册</a>";
         }
@@ -111,4 +114,17 @@ public class UserController {
         }
         return "注册失败<a href='login'>点击此处返回注册</a>";
     }
+
+    /**
+     * 异常页面控制
+     * @param runtimeException
+     * @return
+     */
+     @ExceptionHandler(RuntimeException.class)
+     public @ResponseBody
+     Map<String,Object> runtimeExceptionHandler(RuntimeException runtimeException) {
+         Map model = new TreeMap();
+         model.put("status", false);
+         return model;
+     }
 }

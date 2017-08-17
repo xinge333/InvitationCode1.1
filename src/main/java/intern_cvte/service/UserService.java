@@ -9,7 +9,7 @@ import intern_cvte.pojo.User;
 public interface UserService {
 
     //用户登录
-    User log(String schoolName, String userName, String pwd);
+    User log(String userName, String pwd);
 
     //用户注册
     boolean register(String schoolName, String userName, String pwd, String rpwd);

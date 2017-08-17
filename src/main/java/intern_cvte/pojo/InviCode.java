@@ -15,7 +15,7 @@ public class InviCode implements Serializable {
     private String code;
 
     //表示是否被申请
-    private boolean isUsed;
+    private Boolean isUsed;
 
     //拥有此邀请码的学校
     private String schoolName;
@@ -23,8 +23,6 @@ public class InviCode implements Serializable {
     public InviCode() {
 
     }
-
-    ;
 
     public InviCode(int id, String code, boolean isUsed, String schoolName) {
         this.id = id;

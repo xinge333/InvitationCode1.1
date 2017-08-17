@@ -77,21 +77,4 @@ public class Resolution {
         return s;
     }
 
-
-    public static void main(String args[]) {
-        //Scanner scanner = new Scanner(System.in);
-        /**while(true){
-         String str;
-         str = scanner.nextLine();
-         char a[] = str.toCharArray();
-         System.out.println(deCode(a));
-         }*/
-        int count = 0;
-        for (int i = 0; i < 100000; i++) {
-            int a = radomGen();
-            System.out.println(encode(a));
-        }
-
-    }
-
 }

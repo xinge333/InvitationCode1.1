@@ -17,9 +17,9 @@ public class UserServiceImp implements UserService {
     private UserDao userDao;
 
 
-    public User log(String schoolName, String userName, String pwd) {
+    public User log(String userName, String pwd) {
         try {
-            User user = userDao.queryByName(schoolName,userName, pwd );
+            User user = userDao.queryByName(userName, pwd);
             return user;
         } catch (Exception e) {
             e.printStackTrace();
@@ -35,7 +35,7 @@ public class UserServiceImp implements UserService {
         } else {
             try {
                 //判断是否已经注册
-                User u = userDao.queryByName(schoolName, userName, pwd);
+                User u = userDao.queryByName(userName, pwd);
                 if (u != null) {
                     return false;
                 }
@@ -50,7 +50,7 @@ public class UserServiceImp implements UserService {
         return false;
     }
 
-    public String apply(String sName) {
+    public synchronized String apply(String sName) {
         //申请邀请码由所属的学校去完成
         SchoolServiceImp schoolServiceImp = new SchoolServiceImp();
         String[] strings = sName.split(",");

@@ -16,18 +16,15 @@ import java.sql.SQLException;
 @Component
 public class UserDao {
     //根据用户名查询某个用户
-    public User queryByName(String schoolName, String userName, String pwd) throws SQLException {
+    public User queryByName(String userName, String pwd) throws SQLException {
         User user = null;
         Connection conn = DBUser.getConnection();
-        String sql = " select * from User " + " where userName=? AND password=? and schoolName=?";
+        String sql = " select * from User " + " where userName=? AND password=?";
 
-
-        System.out.print(sql+"------------------"+schoolName);
         PreparedStatement ptmt = conn.prepareStatement(sql);
 
         ptmt.setString(1, userName);
         ptmt.setString(2, pwd);
-        ptmt.setString(3, schoolName);
 
         ResultSet rs = ptmt.executeQuery();
         while (rs.next()) {

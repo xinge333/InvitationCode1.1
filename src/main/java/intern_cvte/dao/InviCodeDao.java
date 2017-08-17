@@ -2,6 +2,7 @@ package intern_cvte.dao;
 
 
 import intern_cvte.pojo.InviCode;
+import org.springframework.stereotype.Component;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by zxy on 2017/8/10.
  * 数据层处理
  */
+@Component
 public class InviCodeDao {
     /**
      * 查询全部的邀请码

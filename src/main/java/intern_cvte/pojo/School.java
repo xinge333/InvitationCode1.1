@@ -7,9 +7,11 @@ import java.io.Serializable;
  */
 public class School implements Serializable {
 
+    //唯一主键
+    private Integer id;
+
     //学校所属省份
     private String province;
-
 
     //学校所属市
     private String city;
@@ -23,8 +25,7 @@ public class School implements Serializable {
     //四位邀请码
     private String code;
 
-    public School() {
-    }
+    public School() {}
 
     public School(String province, String city, String district, String schoolName, String code) {
         this.province = province;
@@ -32,6 +33,14 @@ public class School implements Serializable {
         this.district = district;
         this.schoolName = schoolName;
         this.code = code;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getProvince() {

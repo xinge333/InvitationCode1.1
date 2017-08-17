@@ -62,97 +62,97 @@ function showAddSchoolForm(){
 }
 
 
-
-//登录页面加载时
-$(function () {
-
-    $("#province").change(function () {
-        $("#city").empty();
-        var enp=$("<option checked >选择市</option>");
-        $("#city").append(enp);
-        $("#district").empty();
-        var enp=$("<option checked >选择区</option>");
-        $("#district").append(enp);
-        $("#sName").empty();
-        var enp=$("<option checked >选择学校</option>");
-        $("#sName").append(enp);
-        var val=$(this).val();
-        $.ajax({
-            url: "getCity",
-            data:{province:val},
-            method:"post",
-            success:function (data) {
-                $("#city").empty();
-                var item=JSON.parse(data);
-             var enp=$("<option checked >选择市</option>");
-             $("#city").append(enp);
-                for(var i=0;i<item.length;i++){
-                    var items=$("<option  ids='"+item[i]+"'>"+item[i]+"</option>");
-                    $("#city").append(items);
-                }
-
-            }
-        })
-    });
-
-
-
-    $("#city").change(function () {
-
-        $("#district").empty();
-        var enp=$("<option checked >选择区</option>");
-        $("#district").append(enp);
-        $("#sName").empty();
-        var enp=$("<option checked >选择学校</option>");
-        $("#sName").append(enp);
-
-
-        var val_pro=$("#province").val();
-        var val_city=$("#city").val();
-        $.ajax({
-            url:'getDistrict',
-            data :{province:val_pro,city:val_city},
-            method:"post",
-            success:function (data) {
-                $("#district").empty();
-                var item=JSON.parse(data);
-                var enp=$("<option checked >选择区</option>");
-                $("#district").append(enp);
-                for(var i=0;i<item.length;i++){
-                    var items=$("<option ids='"+item[i]+"'>"+item[i]+"</option>");
-                    $("#district").append(items);
-                }
-            }
-        })
-    });
-
-
-    $("#district").change(function () {
-
-        $("#sName").empty();
-        var enp=$("<option checked >选择学校</option>");
-        $("#sName").append(enp);
-        var val_pro=$("#province").val();
-        var val_city=$("#city").val();
-        var val_dis=$("#district").val();
-        $.ajax({
-            url:'getSchool',
-            data :{province:val_pro,city:val_city,district:val_dis},
-            method:"post",
-            success:function (data) {
-                $("#sName").empty();
-                var item=JSON.parse(data);
-                var enp=$("<option checked >选择学校</option>");
-                $("#sName").append(enp);
-                for(var i=0;i<item.length;i++){
-                    var items=$("<option ids='"+item[i]+"'>"+item[i]+"</option>");
-                    $("#sName").append(items);
-                }
-            }
-        })
-    });
-
-})
+//
+// //登录页面加载时
+// $(function () {
+//
+//     $("#province").change(function () {
+//         $("#city").empty();
+//         var enp=$("<option checked >选择市</option>");
+//         $("#city").append(enp);
+//         $("#district").empty();
+//         var enp=$("<option checked >选择区</option>");
+//         $("#district").append(enp);
+//         $("#sName").empty();
+//         var enp=$("<option checked >选择学校</option>");
+//         $("#sName").append(enp);
+//         var val=$(this).val();
+//         $.ajax({
+//             url: "getCity",
+//             data:{province:val},
+//             method:"post",
+//             success:function (data) {
+//                 $("#city").empty();
+//                 var item=JSON.parse(data);
+//              var enp=$("<option checked >选择市</option>");
+//              $("#city").append(enp);
+//                 for(var i=0;i<item.length;i++){
+//                     var items=$("<option  ids='"+item[i]+"'>"+item[i]+"</option>");
+//                     $("#city").append(items);
+//                 }
+//
+//             }
+//         })
+//     });
+//
+//
+//
+//     $("#city").change(function () {
+//
+//         $("#district").empty();
+//         var enp=$("<option checked >选择区</option>");
+//         $("#district").append(enp);
+//         $("#sName").empty();
+//         var enp=$("<option checked >选择学校</option>");
+//         $("#sName").append(enp);
+//
+//
+//         var val_pro=$("#province").val();
+//         var val_city=$("#city").val();
+//         $.ajax({
+//             url:'getDistrict',
+//             data :{province:val_pro,city:val_city},
+//             method:"post",
+//             success:function (data) {
+//                 $("#district").empty();
+//                 var item=JSON.parse(data);
+//                 var enp=$("<option checked >选择区</option>");
+//                 $("#district").append(enp);
+//                 for(var i=0;i<item.length;i++){
+//                     var items=$("<option ids='"+item[i]+"'>"+item[i]+"</option>");
+//                     $("#district").append(items);
+//                 }
+//             }
+//         })
+//     });
+//
+//
+//     $("#district").change(function () {
+//
+//         $("#sName").empty();
+//         var enp=$("<option checked >选择学校</option>");
+//         $("#sName").append(enp);
+//         var val_pro=$("#province").val();
+//         var val_city=$("#city").val();
+//         var val_dis=$("#district").val();
+//         $.ajax({
+//             url:'getSchool',
+//             data :{province:val_pro,city:val_city,district:val_dis},
+//             method:"post",
+//             success:function (data) {
+//                 $("#sName").empty();
+//                 var item=JSON.parse(data);
+//                 var enp=$("<option checked >选择学校</option>");
+//                 $("#sName").append(enp);
+//                 for(var i=0;i<item.length;i++){
+//                     var items=$("<option ids='"+item[i]+"'>"+item[i]+"</option>");
+//                     $("#sName").append(items);
+//                 }
+//             }
+//         })
+//     });
+//
+// })
 
 
 
